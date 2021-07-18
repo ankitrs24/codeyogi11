@@ -1,15 +1,19 @@
 import { FC, memo } from "react";
+import { Link } from "react-router-dom";
 
-interface Props{
-}
+interface Props {}
 
-const dashboard: React.FC<Props>=(props) =>{
+const Dashboard: React.FC<Props>=(props) =>{
     return(
         <div>
-          This is a dashboard page.
+          This is a Dashboard page.
+          <Link to="Recordings"><span 
+          className="text-blue-500">Go to Recordings</span></Link>
         </div>
 
-    )
-}
+    );
+};
 
-export default dashboard;
+Dashboard.defaultProps ={};
+
+export default memo (Dashboard);
