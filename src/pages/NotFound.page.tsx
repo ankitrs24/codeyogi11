@@ -8,4 +8,4 @@ const NotFound: FC<Props> = (props) => {
 
 NotFound.defaultProps = {};
 
-export default NotFound;
+export default memo(NotFound);

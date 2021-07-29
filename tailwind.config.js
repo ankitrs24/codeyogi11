@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        logo: "url('./component/logo.webp')",
+        logo: "url('./Images/logo.webp')",
       },
     },
     variants: {

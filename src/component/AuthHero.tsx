@@ -8,7 +8,7 @@ const AuthHero: FC<Props> = (props) => {
     console.log("AuthHero Rendering for the first time");
   }, []);
 
-  return <div className="w-1/2 h-screen text-white bg-black bg-logo"></div>;
+  return <div className="w-1/2 h-screen text-white bg-black "></div>;
 };
 
 AuthHero.defaultProps = {};
