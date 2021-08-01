@@ -1,10 +1,11 @@
-import { ChangeEvent, FocusEvent, FC, memo } from "react";
+import { FC, memo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { HiUser, HiLockClosed } from "react-icons/hi";
 import { FaSpinner } from "react-icons/fa";
 //import { useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import Input  from "../component/Input";
 
 interface Props {}
 
@@ -12,24 +13,29 @@ const Login: FC<Props> = (props) => {
   //const [data, setData] = useState({ email: "", password: "" });
   //const [touched, setTouched] = useState({ email: false, password: false });
   //const [submitting, setSubmitting] = useState(false);
-  
+
   const history = useHistory();
   const {
     handleSubmit,
-    handleChange,
-    handleBlur,
-    values,
+    getFieldProps,
+    //handleChange,
+    //handleBlur,
+    //values,
     touched,
     isSubmitting,
     errors,
+    isValid,
   } = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validationSchema: yup.object().shape({
+    validationSchema: yup.object().required().shape({
       email: yup.string().required("This field is required!").email(),
-      password: yup.string().required().min(8, ({min}) => `Atleast ${min} chars!`),
+      password: yup
+        .string()
+        .required()
+        .min(8, ({ min }) => `Atleast ${min} chars!`),
     }),
     onSubmit: (data, { setSubmitting }) => {
       console.log("form submitting", data);
@@ -39,7 +45,6 @@ const Login: FC<Props> = (props) => {
       }, 5000);
     },
   });
-  
 
   //const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
   //const nameOfChangeInput = event.target.name;
@@ -131,51 +136,35 @@ const Login: FC<Props> = (props) => {
             </Link>
           </span>
         </p>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <input type="hidden" name="remember" defaultValue="true" />
-          <div className="-space-y-px rounded-md shadow-sm">
+        <div className="-space-y-px rounded-md shadow-sm">
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+            <input type="hidden" name="remember" defaultValue="true" />
             <div className="flex py-3 border-t-0 border-b-2 border-l-0 border-r-0">
               <HiUser className="w-6 h-12 text-blue-500"></HiUser>
-              <label htmlFor="Username" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
+              <Input
+                id="email"
                 type="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
                 autoComplete="email"
                 required
-                className="relative block w-full px-3 py-2 text-gray-900 rounded-none appearance-none focus:outline-none rounded-t-md focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                touched={touched.email}
+                error={errors.email}
+                {...getFieldProps("email")}
                 placeholder="Username"
               />
             </div>
-            {touched.email && (
-              <div className="text-red-600">{errors.email}</div>
-            )}
             <div className="flex py-3 border-t-0 border-b-2 border-l-0 border-r-0">
               <HiLockClosed className="w-6 h-12 text-blue-500"></HiLockClosed>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
+              <Input
                 id="password"
-                name="password"
                 type="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
                 autoComplete="Current Password"
                 required
-                className="relative block w-full px-3 py-2 text-gray-900 rounded-none appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm "
+                touched={touched.password}
+                error={errors.password}
+                {...getFieldProps("password")}
                 placeholder="Password"
               />
             </div>
-            {touched.password && (
-              <div className="text-red-600">{errors.password}</div>
-            )}
             <div className="flex justify-between">
               <div>
                 <label className="pt-4 text-black ">Show Password</label>
@@ -188,6 +177,7 @@ const Login: FC<Props> = (props) => {
               <div>
                 <button
                   type="submit"
+                  disabled ={!isValid}
                   className="flex p-2 mt-2 text-center text-white bg-blue-600 border-2 rounded "
                 >
                   Log In
@@ -212,8 +202,8 @@ const Login: FC<Props> = (props) => {
                 Cookie Preferences, Privacy, and Terms.
               </p>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
