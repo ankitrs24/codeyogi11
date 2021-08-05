@@ -1,9 +1,9 @@
-import { memo } from "react";
+import { FC, memo } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {}
 
-const Dashboard: React.FC<Props> = (props) => {
+const Dashboard: FC<Props> = (props) => {
   return (
     <div>
       This is a Dashboard page.
