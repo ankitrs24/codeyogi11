@@ -35,11 +35,8 @@ const Login: FC<Props> = (props) => {
       .object()
       .required()
       .shape({
-        email: yup.string().required("This field is required!").email(),
-        password: yup
-          .string()
-          .required()
-          .min(8, ({ min }) => `Atleast ${min} chars!`),
+        email: yup.string().required().email(),
+        password: yup.string().required().min(8),
       }),
     onSubmit: (data, { setSubmitting }) => {
       console.log("form submitting", data);
@@ -130,7 +127,7 @@ const Login: FC<Props> = (props) => {
     <div className="flex min-h-screen sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <h1 className="text-5xl text-left text-black font-semi-bold ">
-          Log In to <span className="text-indigo-700">CodeYogi</span>
+          Log In to <span className="text-indigo-700">Codeyogi</span>
         </h1>
         <p>
           New Here?
@@ -179,7 +176,12 @@ const Login: FC<Props> = (props) => {
                 />
               </div>
               <div>
-                <Button className="justify-between w-10 h-12 text-center" theme="Secondary">Log In </Button>
+                <Button
+                  className="justify-between w-10 h-12 text-center"
+                  theme="Secondary"
+                >
+                  Log In
+                </Button>
                 {isSubmitting && (
                   <FaSpinner className="mt-6 animate-spin"></FaSpinner>
                 )}

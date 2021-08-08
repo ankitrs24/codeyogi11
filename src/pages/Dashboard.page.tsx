@@ -9,7 +9,7 @@ const Dashboard: FC<Props> = (props) => {
       This is a Dashboard page.
       <Link to="Recordings">
         <span className="text-blue-500">Go to Recordings</span>
-      </Link>
+      </Link>       
     </div>
   );
 };
