@@ -8,6 +8,9 @@ const Xyz = {
     theme: {
       control: { type: "select" },
     },
+    backgroundcolor: {
+      control: { type: "color" },
+    },
   },
 };
 

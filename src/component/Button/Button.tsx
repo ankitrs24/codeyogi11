@@ -28,7 +28,6 @@ const Button: FC<Props> = ({ children, className, theme, ...rest }) => {
 };
 
 Button.defaultProps = {
-  theme: "primary",
-  
+  theme: "primary"
 };
 export default memo(Button);
