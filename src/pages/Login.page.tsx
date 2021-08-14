@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, memo, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { HiUser, HiLockClosed } from "react-icons/hi";
 import { FaSpinner } from "react-icons/fa";
@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../component/Input/Input";
 import Button from "../component/Button/Button";
-import { login } from "../api"; 
+import { login } from "../api";
 
 interface Props {}
 
@@ -17,6 +17,7 @@ const Login: FC<Props> = (props) => {
   //const [submitting, setSubmitting] = useState(false);
 
   const history = useHistory();
+  const [checkbox, setcheckbox] = useState(false);
   const {
     handleSubmit,
     getFieldProps,
@@ -41,13 +42,13 @@ const Login: FC<Props> = (props) => {
       }),
     onSubmit: (data) => {
       login(data).then(() => {
-        history.push ("/dashboard");
+        history.push("/dashboard");
       });
-      
+
       //console.log("form submitting", data);
       //setTimeout(() => {
-        //console.log("form submitted succesfully");
-        //history.push("/dashboard");
+      //console.log("form submitted succesfully");
+      //history.push("/dashboard");
       //}, 5000);
     },
   });
@@ -129,7 +130,7 @@ const Login: FC<Props> = (props) => {
   // }
 
   return (
-    <div className="flex min-h-screen sm:px-6 lg:px-8">
+    <div className="flex min-h-screen mx-auto sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <h1 className="text-5xl text-left text-black font-semi-bold ">
           Log In to <span className="text-indigo-700">Codeyogi</span>
@@ -162,7 +163,7 @@ const Login: FC<Props> = (props) => {
               <HiLockClosed className="w-6 h-12 text-blue-500"></HiLockClosed>
               <Input
                 id="password"
-                type="password"
+                type={checkbox ? "text" : "password"}
                 autoComplete="Current Password"
                 required
                 touched={touched.password}
@@ -176,15 +177,14 @@ const Login: FC<Props> = (props) => {
                 <label className="pt-4 text-black ">Show Password</label>
                 <input
                   type="checkbox"
+                  checked={checkbox}
+                  onChange={() => setcheckbox((value) => !value)}
                   name="Show Password"
                   id="Show Password"
-                 />
+                />
               </div>
               <div>
-                <Button
-                  className="justify-between w-10 h-12 text-center"
-                  theme="Secondary"
-                >
+                <Button className="w-10 h-12 text-center" theme="primary">
                   Log In
                 </Button>
                 {isSubmitting && (

@@ -8,11 +8,13 @@ import Input from "../component/Input/Input";
 import Button from "../component/Button/Button";
 import { useFormik } from "formik";
 import { FaSpinner } from "react-icons/fa";
+import { useState } from "react";
 
 interface Props {}
 
 const Signup: FC<Props> = (props) => {
   const history = useHistory();
+  const [checkbox, setcheckbox] = useState(false);
   const {
     handleSubmit,
     getFieldProps,
@@ -43,8 +45,8 @@ const Signup: FC<Props> = (props) => {
     },
   });
   return (
-    <div className="w-1/2 min-h-screen px-12">
-      <div>
+    <div className="w-1/2 min-h-screen mx-auto sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8">
         <h1 className="text-4xl font-normal">
           Get started with a <div>free account </div>
         </h1>
@@ -99,7 +101,7 @@ const Signup: FC<Props> = (props) => {
             </label>
             <Input
               id="password"
-              type="password"
+              type={checkbox ? "text" : "password"}
               autoComplete="Current Password"
               required
               touched={touched.password}
@@ -118,10 +120,16 @@ const Signup: FC<Props> = (props) => {
           <div className="flex justify-between">
             <div>
               <label className="pt-4 text-black ">Show Password</label>
-              <input type="checkbox" name="Show Password" id="Show Password" />
+              <input
+                type="checkbox"
+                checked={checkbox}
+                onChange={() => setcheckbox((value) => !value)}
+                name="Show Password"
+                id="Show Password"
+              />
             </div>
             <div className="mb-12 ml-40">
-              <Button className="justify-between pr-20" theme="primary">
+              <Button className="w-10 h-12 text-center" theme="primary">
                 Get Started
               </Button>
               {isSubmitting && (
