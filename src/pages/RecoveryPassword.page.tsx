@@ -1,18 +1,11 @@
-import {FC, memo} from "react";
+import { FC, memo } from "react";
 
-interface Props{
-}
+interface Props {}
 
-const RecoveryPassword: FC<Props>=(props) =>{
-    return(
-        <div>
-          Recovery Password here!
-        </div>
-
-    );
-
+const RecoveryPassword: FC<Props> = (props) => {
+  return <div>This is RecoveryPassword page.</div>;
 };
 
 RecoveryPassword.defaultProps = {};
 
-export default memo (RecoveryPassword);
+export default memo(RecoveryPassword);

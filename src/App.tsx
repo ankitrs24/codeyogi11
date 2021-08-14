@@ -12,14 +12,18 @@ function App() {
         <Route path="/" exact>
           <Redirect to="/Login"></Redirect>
         </Route>
-        <Route path={["/Login", "/Signup"]} exact>
+        <Route path={["/Login", "/Signup", "/RecoveryPassword"]} exact>
           <AuthPage />
         </Route>
-        <Route path={["/Dashboard", "/Recordings", "/batch/:batchNumber/Lecture/:LectureNumber"]} exact>
+        <Route
+          path={[
+            "/Dashboard",
+            "/Recordings",
+            "/batch/:batchNumber/Lecture/:LectureNumber",
+          ]}
+          exact
+        >
           <AppContainerPage />
-        </Route>
-        <Route path={"/RecoveryPassword"}>
-        <RecoveryPassword/>
         </Route>
         <Route>
           <NotFound />

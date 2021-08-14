@@ -8,12 +8,25 @@ const Xyz = {
     theme: {
       control: { type: "select" },
     },
+    backgroundcolor: {
+      control: { type: "color" },
+    },
   },
 };
 
-export const main = (args: any) => <Button {...args}></Button>;
+export const main = (args: any, args2: any) => {
+  return (
+    <>
+      <Button {...args}></Button> <Button {...args2}></Button>
+    </>
+  );
+};
 
 main.args = {
   children: "primary",
+};
+
+main.args2 = {
+  children: "secondary",
 };
 export default Xyz;

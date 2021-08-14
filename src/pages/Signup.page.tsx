@@ -1,14 +1,49 @@
 import { FC, memo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import { HiLockClosed } from "react-icons/hi";
 import { HiAtSymbol } from "react-icons/hi";
+import * as yup from "yup";
+import Input from "../component/Input/Input";
+import Button from "../component/Button/Button";
+import { useFormik } from "formik";
+import { FaSpinner } from "react-icons/fa";
 
 interface Props {}
 
 const Signup: FC<Props> = (props) => {
+  const history = useHistory();
+  const {
+    handleSubmit,
+    getFieldProps,
+    touched,
+    isSubmitting,
+    errors,
+    isValid,
+  } = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: yup
+      .object()
+      .required()
+      .shape({
+        username: yup.string().required(),
+        email: yup.string().required().email(),
+        password: yup.string().required().min(8),
+      }),
+    onSubmit: (data, { setSubmitting }) => {
+      console.log("form submitting", data);
+      setTimeout(() => {
+        console.log("form submitted succesfully");
+        history.push("/dashboard");
+      }, 5000);
+    },
+  });
   return (
-    <div className="px-12">
+    <div className="w-1/2 min-h-screen px-12">
       <div>
         <h1 className="text-4xl font-normal">
           Get started with a <div>free account </div>
@@ -22,7 +57,7 @@ const Signup: FC<Props> = (props) => {
           </Link>
         </span>
       </p>
-      <form className="mt-8 space-y-6">
+      <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         <input type="hidden" name="remember" defaultValue="true" />
         <div className="-space-y-px rounded-md shadow-sm">
           <div className="flex py-3 border-t-0 border-b-2 border-l-0 border-r-0">
@@ -30,13 +65,14 @@ const Signup: FC<Props> = (props) => {
             <label htmlFor="Username" className="sr-only">
               Username
             </label>
-            <input
-              id="Username"
-              name="Username"
-              type="Username"
-              autoComplete="Username"
+            <Input
+              id="username"
+              type="username"
+              autoComplete="username"
               required
-              className="relative block w-full px-3 py-2 text-gray-900 rounded-none appearance-none focus:outline-none rounded-t-md focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              touched={touched.username}
+              error={errors.username}
+              {...getFieldProps("username")}
               placeholder="Username"
             />
           </div>
@@ -45,13 +81,14 @@ const Signup: FC<Props> = (props) => {
             <label htmlFor="email" className="sr-only">
               email-=address
             </label>
-            <input
+            <Input
               id="email"
-              name="email"
               type="email"
               autoComplete="email"
               required
-              className="relative block w-full px-3 py-2 text-gray-900 rounded-none appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm "
+              touched={touched.email}
+              error={errors.email}
+              {...getFieldProps("email")}
               placeholder="email"
             />
           </div>
@@ -60,19 +97,43 @@ const Signup: FC<Props> = (props) => {
             <label htmlFor="password" className="sr-only">
               Password
             </label>
-            <input
+            <Input
               id="password"
-              name="password"
               type="password"
               autoComplete="Current Password"
               required
-              className="relative block w-full px-3 py-2 text-gray-900 rounded-none appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm "
+              touched={touched.password}
+              error={errors.password}
+              {...getFieldProps("password")}
               placeholder="Password"
             />
+          </div>
+          <div className="flex py-6">
+            <input type="checkbox" />
+            <p>
+              I agree to the
+              <span className="text-blue-400">terms and conditions </span>
+            </p>
+          </div>
+          <div className="flex justify-between">
             <div>
-              <label>I agree to the terms and conditions </label>
-              <input type="checkbox" />
+              <label className="pt-4 text-black ">Show Password</label>
+              <input type="checkbox" name="Show Password" id="Show Password" />
             </div>
+            <div className="mb-12 ml-40">
+              <Button className="justify-between pr-20" theme="primary">
+                Get Started
+              </Button>
+              {isSubmitting && (
+                <FaSpinner className="mt-6 animate-spin"></FaSpinner>
+              )}
+            </div>
+          </div>
+          <div className="mb-10">
+            <p>
+              © 2020 All Rights Reserved. CORK is a product of Designreset.
+              Cookie Preferences, Privacy, and Terms.
+            </p>
           </div>
         </div>
       </form>

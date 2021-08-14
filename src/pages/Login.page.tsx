@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../component/Input/Input";
 import Button from "../component/Button/Button";
+import { login } from "../api"; 
 
 interface Props {}
 
@@ -38,12 +39,16 @@ const Login: FC<Props> = (props) => {
         email: yup.string().required().email(),
         password: yup.string().required().min(8),
       }),
-    onSubmit: (data, { setSubmitting }) => {
-      console.log("form submitting", data);
-      setTimeout(() => {
-        console.log("form submitted succesfully");
-        history.push("/dashboard");
-      }, 5000);
+    onSubmit: (data) => {
+      login(data).then(() => {
+        history.push ("/dashboard");
+      });
+      
+      //console.log("form submitting", data);
+      //setTimeout(() => {
+        //console.log("form submitted succesfully");
+        //history.push("/dashboard");
+      //}, 5000);
     },
   });
 
@@ -173,7 +178,7 @@ const Login: FC<Props> = (props) => {
                   type="checkbox"
                   name="Show Password"
                   id="Show Password"
-                />
+                 />
               </div>
               <div>
                 <Button
