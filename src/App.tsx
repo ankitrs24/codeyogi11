@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import AppContainerPage from "./pages/AppContainer.page";
 import AuthPage from "./pages/Auth.page";
 import NotFound from "./pages/NotFound.page";
-import RecoveryPassword from "./pages/RecoveryPassword.page";
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
         <Route path="/" exact>
           <Redirect to="/Login"></Redirect>
         </Route>
-        <Route path={["/Login", "/Signup", "/RecoveryPassword"]} exact>
+        <Route path={["/Login", "/Signup"]} exact>
           <AuthPage />
         </Route>
         <Route

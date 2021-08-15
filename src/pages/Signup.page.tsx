@@ -21,7 +21,6 @@ const Signup: FC<Props> = (props) => {
     touched,
     isSubmitting,
     errors,
-    isValid,
   } = useFormik({
     initialValues: {
       username: "",

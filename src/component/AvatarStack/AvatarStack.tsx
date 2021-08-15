@@ -18,25 +18,25 @@ const AvatarStack: FC<Props> = ({ userNumber, imageLinkArray }) => {
       {users >= 1 && (
         <Avatar
           className="duration-500 transform hover:-translate-y-3"
-          imageLink={imageLinkArray[0]}
+          src={imageLinkArray[0]}
         ></Avatar>
       )}
       {users >= 2 && (
         <Avatar
           className="duration-500 transform hover:-translate-y-3"
-          imageLink={imageLinkArray[1]}
+          src={imageLinkArray[1]}
         ></Avatar>
       )}
       {users >= 3 && (
         <Avatar
           className="duration-500 transform hover:-translate-y-3"
-          imageLink={imageLinkArray[2]}
+          src={imageLinkArray[2]}
         ></Avatar>
       )}
       {users >= 4 && (
         <Avatar
           className="duration-500 transform hover:-translate-y-3"
-          imageLink={imageLinkArray[3]}
+          src={imageLinkArray[3]}
         ></Avatar>
       )}
       {n !== 0 && (

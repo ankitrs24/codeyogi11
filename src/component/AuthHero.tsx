@@ -12,7 +12,7 @@ const AuthHero: FC<Props> = (props) => {
   return (
     <div className="hidden w-1/2 h-screen text-white bg-black lg:block">
       <div>
-        <img className="px-16 py-24" src={logo} />
+        <img className="px-16 py-24" src={logo} alt="" />
       </div>
     </div>
   );

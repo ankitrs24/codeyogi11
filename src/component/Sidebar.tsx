@@ -3,7 +3,6 @@ import { RiHome4Fill } from "react-icons/ri";
 import { FaAppStore } from "react-icons/fa";
 import { GrCube, GrSystem } from "react-icons/gr";
 import { ImPower } from "react-icons/im";
-import { FiDivide } from "react-icons/fi";
 
 interface Props {}
 

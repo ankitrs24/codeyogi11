@@ -2,7 +2,6 @@ import { FC, memo, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { HiUser, HiLockClosed } from "react-icons/hi";
 import { FaSpinner } from "react-icons/fa";
-//import { useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../component/Input/Input";
@@ -27,7 +26,6 @@ const Login: FC<Props> = (props) => {
     touched,
     isSubmitting,
     errors,
-    isValid,
   } = useFormik({
     initialValues: {
       email: "",
