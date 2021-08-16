@@ -3,10 +3,10 @@ import Avatar from "../Avatar/Avatar";
 
 interface Props {
   userNumber: number;
-  imageLinkArray: string[];
+  srcArray: string[];
 }
 
-const AvatarStack: FC<Props> = ({ userNumber, imageLinkArray }) => {
+const AvatarStack: FC<Props> = ({ userNumber, srcArray }) => {
   let n = 0;
   const users = userNumber;
   if (userNumber > 4) {
@@ -14,29 +14,29 @@ const AvatarStack: FC<Props> = ({ userNumber, imageLinkArray }) => {
   }
 
   return (
-    <div className="flex flex-row -space-x-4">
+    <div className="flex flex-row mt-8 -space-x-4 ">
       {users >= 1 && (
         <Avatar
           className="duration-500 transform hover:-translate-y-3"
-          src={imageLinkArray[0]}
+          src={srcArray[0]}
         ></Avatar>
       )}
       {users >= 2 && (
         <Avatar
           className="duration-500 transform hover:-translate-y-3"
-          src={imageLinkArray[1]}
+          src={srcArray[1]}
         ></Avatar>
       )}
       {users >= 3 && (
         <Avatar
           className="duration-500 transform hover:-translate-y-3"
-          src={imageLinkArray[2]}
+          src={srcArray[2]}
         ></Avatar>
       )}
       {users >= 4 && (
         <Avatar
           className="duration-500 transform hover:-translate-y-3"
-          src={imageLinkArray[3]}
+          src={srcArray[3]}
         ></Avatar>
       )}
       {n !== 0 && (
@@ -48,7 +48,7 @@ const AvatarStack: FC<Props> = ({ userNumber, imageLinkArray }) => {
 
 AvatarStack.defaultProps = {
   userNumber: 10,
-  imageLinkArray: [
+  srcArray: [
     "https://designreset.com/cork/ltr/demo4/assets/img/profile-12.jpeg",
     "https://designreset.com/cork/ltr/demo4/assets/img/profile-12.jpeg",
     "https://designreset.com/cork/ltr/demo4/assets/img/profile-12.jpeg",

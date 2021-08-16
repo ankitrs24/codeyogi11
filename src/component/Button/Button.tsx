@@ -2,20 +2,19 @@ import { FC, memo } from "react";
 import { ButtonHTMLAttributes } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  theme?: "primary" | "Secondary" | "Success" | "Dark";
+  theme?: "Primary" | "Secondary" | "Success" | "Dark";
   children: string;
-  className: string;
 }
 
 const Button: FC<Props> = ({ children, className, theme, ...rest }) => {
   const themeClasses =
-    theme === "primary"
-      ? "bg-indigo-600  text-white"
+    theme === "Primary"
+      ? "bg-blue-200 text-blue-900"
       : theme === "Secondary"
-      ? "bg-red-500 text-white"
+      ? "bg-green-200 text-green-500"
       : theme === "Dark"
-      ? "bg-gray-500 text-white"
-      : "bg-blue-100 text-white";
+      ? "bg-gray-200 text-gray-500"
+      : "bg-red-200 text-red-500";
 
   return (
     <button
@@ -33,6 +32,6 @@ const Button: FC<Props> = ({ children, className, theme, ...rest }) => {
 };
 
 Button.defaultProps = {
-  theme: "primary",
+  theme: "Primary",
 };
 export default memo(Button);

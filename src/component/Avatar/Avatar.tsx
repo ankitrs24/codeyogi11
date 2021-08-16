@@ -9,27 +9,37 @@ interface Props {
 }
 
 const Avatar: FC<Props> = ({ src, status, size, className }) => {
+  const onlineActivity =
+    status === "online"
+      ? "bg-green-600 "
+      : status === "Offline"
+      ? "bg-gray-400 "
+      : "bg-white";
   return (
-    <div className="relative flex">
+    <div className="relative">
       <div>
         <img
           src={profile}
-          alt =""
+          alt=""
           className={
-            className + "rounded-full flex-shrink-0 w-10 h-10 inline-block"
+            className + "rounded-full flex-shrink-0 w-16 h-16 inline-block"
           }
         />
       </div>
-      {status && 
+      {
         <div
           className={
-            (status === "online" ? "bg-green-600 " : "bg-gray-400 ") +
-            " absolute w-2 h-2 rounded-full bottom-1  box-content border-white "
+            " absolute w-2 h-2 rounded-full bottom-1 border-white " +
+            { onlineActivity }
           }
         ></div>
       }
     </div>
   );
+};
+
+Avatar.defaultProps = {
+  status: "online",
 };
 
 export default memo(Avatar);

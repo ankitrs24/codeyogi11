@@ -8,25 +8,17 @@ const Xyz = {
     theme: {
       control: { type: "select" },
     },
-    backgroundcolor: {
-      control: { type: "color" },
-    },
   },
 };
 
-export const main = (args: any, args2: any) => {
-  return (
-    <>
-      <Button {...args}></Button> <Button {...args2}></Button>
-    </>
-  );
-};
+const Template = (args: any) => <Button {...args}></Button>;
 
+export const main: any = Template.bind({});
 main.args = {
-  children: "primary",
+  children: "log In",
+  type: "Submit",
+  className: "",
+  disabled:false, 
 };
 
-main.args2 = {
-  children: "secondary",
-};
 export default Xyz;
