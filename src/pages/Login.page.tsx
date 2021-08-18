@@ -182,7 +182,7 @@ const Login: FC<Props> = (props) => {
                 />
               </div>
               <div>
-                <Button className="w-10 h-12 text-center" theme="primary">
+                <Button className="w-10 h-12 text-center" theme="Primary">
                   Log In
                 </Button>
                 {isSubmitting && (

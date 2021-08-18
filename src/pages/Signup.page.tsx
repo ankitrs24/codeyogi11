@@ -128,7 +128,7 @@ const Signup: FC<Props> = (props) => {
               />
             </div>
             <div className="mb-12 ml-40">
-              <Button className="w-10 h-12 text-center" theme="primary">
+              <Button className="w-10 h-12 text-center" theme="Primary">
                 Get Started
               </Button>
               {isSubmitting && (

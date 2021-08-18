@@ -9,28 +9,24 @@ interface Props {
 }
 
 const Avatar: FC<Props> = ({ src, status, size, className }) => {
-  const onlineActivity =
-    status === "online"
-      ? "bg-green-600 "
-      : status === "Offline"
-      ? "bg-gray-400 "
-      : "bg-white";
   return (
-    <div className="relative">
-      <div>
-        <img
-          src={profile}
-          alt=""
-          className={
-            className + "rounded-full flex-shrink-0 w-16 h-16 inline-block"
-          }
-        />
-      </div>
+    <div className="relative inline-block">
+      <img
+        src={src}
+        alt=""
+        className={
+          className + " rounded-full flex-shrink-0 w-16 h-16 inline-block"
+        }
+      />
       {
         <div
           className={
-            " absolute w-2 h-2 rounded-full bottom-1 border-white " +
-            { onlineActivity }
+            " absolute w-4 h-4 rounded-full bottom-1 right-1 border-white " +
+            (status === "online"
+              ? " bg-green-600 "
+              : status === "Offline"
+              ? " bg-gray-400 "
+              : " bg-white ")
           }
         ></div>
       }

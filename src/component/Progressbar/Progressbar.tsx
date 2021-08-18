@@ -3,12 +3,13 @@ import { FC, memo } from "react";
 interface Props {
   theme: "primary" | "Warning" | "Info" | "Success" | "error";
   progress: number;
+  counter: number;
 }
 
 const Progressbar: FC<Props> = (theme, progress) => {
   const themeClasses =
     theme === "primary"
-      ? "bg-blue-500"
+      ? "<bg-blue-500"
       : theme === "Warning"
       ? "bg-green-500"
       : theme === "Info"
@@ -26,10 +27,9 @@ const Progressbar: FC<Props> = (theme, progress) => {
     console.error(`progress can't be less than 0 but ${progress} given`);
   }
   return (
-    <div>
-      className=
-      {" w-full p-2 mt-2 rounded-2xl " + themeClasses + " "}
-    </div>
+    <div
+      className={" w-full border-2 p-2 mt-2 rounded-full" + themeClasses}
+    ></div>
   );
 };
 

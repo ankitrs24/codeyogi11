@@ -5,15 +5,16 @@ import { fetchGroups } from "../api";
 interface Props {}
 
 const Dashboard: FC<Props> = (props) => {
-  useEffect(() =>{
-    fetchGroups();
-  },[]);
+  useEffect(() => {
+    fetchGroups({ status: "all-groups" });
+  }, []);
+
   return (
     <div>
       This is a Dashboard page.
-      <Link to="Recordings">
+      <Link to="/Recordings">
         <span className="text-blue-500">Go to Recordings</span>
-      </Link>       
+      </Link>
     </div>
   );
 };
