@@ -30,7 +30,7 @@ const Sidebar: FC<Props> = (props) => {
             <ImPower className="ml-3"> </ImPower>
             <li>Element</li>
           </div>
-          <div className="flex p-2 mt-4 border-2 border-gray-100 rounded-lg hover:bg-indigo-300">
+          <div className="flex p-2 mt-4 border-2 border-gray-100 rounded-lg hover:bg-blue-500">
             <GrSystem className="ml-3"> </GrSystem>
             <li>Widget</li>
           </div>

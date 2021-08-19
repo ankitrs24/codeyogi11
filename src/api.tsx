@@ -82,11 +82,11 @@ interface GroupRequest {
   status: "all-groups" | "favourite" | "archieved";
 }
 interface GroupResponse {
-  data: Data;
+  data: Group;
   creator: Creators;
 }
 
-interface Data {
+export interface Group {
   id: number;
   name: string;
   description: string;
@@ -103,8 +103,11 @@ export const fetchGroups = (data: GroupRequest) => {
 
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
 
-  axios
+  return axios
     .get(url, { params: data, headers: { Authorization: token } })
-    .then((response) => console.log(response))
+    .then((response) => {
+      console.log(response.data.data);
+      return response.data.data;
+    })
     .catch((e) => console.error(e));
 };

@@ -9,7 +9,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<Props> = ({ children, className, theme, ...rest }) => {
   const themeClasses =
     theme === "Primary"
-      ? "bg-blue-200 text-blue-900"
+      ? "bg-blue-600 text-white"
       : theme === "Secondary"
       ? "bg-green-200 text-green-500"
       : theme === "Dark"

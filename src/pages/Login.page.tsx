@@ -131,7 +131,7 @@ const Login: FC<Props> = (props) => {
     <div className="flex min-h-screen mx-auto sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <h1 className="text-5xl text-left text-black font-semi-bold ">
-          Log In to <span className="text-indigo-700">Codeyogi</span>
+          Log In to <span className="text-indigo-700">Codeyogi11</span>
         </h1>
         <p>
           New Here?
