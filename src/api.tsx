@@ -1,13 +1,21 @@
 import axios from "axios";
+import { string } from "yup";
 
- axios.interceptors.request.use((config) => {    
-    const token = localStorage.getItem(LS_LOGIN_TOKEN); 
-     if (!token){
-       return config;
-     }
-  return {...config, headers: { ...config.headers, Authorization: token}};
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem(LS_LOGIN_TOKEN);
+  if (!token) {
+    return config;
   }
- );
+  return { ...config, headers: { ...config.headers, Authorization: token } };
+});
+
+axios.interceptors.response.use(undefined, (error) => {
+  if (error.response.data.code === 9101) {
+    localStorage.removeItem(LS_LOGIN_TOKEN);
+    window.location.href = "/login";
+  }
+  return Promise.reject(error);
+});
 
 interface LoginRequest {
   email: string;
@@ -38,7 +46,7 @@ interface User {
 
 const BASE_URL = "https://api-dev.domecompass.com";
 
-const LS_LOGIN_TOKEN = "login_token";
+export const LS_LOGIN_TOKEN = "login_token";
 
 export const login = (data: LoginRequest) => {
   const url = BASE_URL + "/login";
@@ -61,21 +69,42 @@ export const login = (data: LoginRequest) => {
     localStorage.setItem(LS_LOGIN_TOKEN, response.data.token);
     return response.data.user;
   });
+};
+
+export const logout = () => {
+  localStorage.removeItem(LS_LOGIN_TOKEN);
+};
+
+interface GroupRequest {
+  limit?: number;
+  offset?: number;
+  query?: string;
+  status: "all-groups" | "favourite" | "archieved";
+}
+interface GroupResponse {
+  data: Data;
+  creator: Creators;
 }
 
- interface GroupRequest {
-   limit?: number;
-   offset?: number;
-   query?: string;
-   status: "all-groups" | "favourite" | "archieved";
- }
- export const fetchGroups = (data: GroupRequest) => {
-   const url = BASE_URL + "/groups";
+interface Data {
+  id: number;
+  name: string;
+  description: string;
+  group_imageurl: string;
+}
 
-   const token = localStorage.getItem(LS_LOGIN_TOKEN);
+interface Creators {
+  id: number;
+  first_name: string;
+  last_name: string;
+}
+export const fetchGroups = (data: GroupRequest) => {
+  const url = BASE_URL + "/groups";
 
-   axios
-     .get(url, { params: data, headers: {Authorization: token}})
-     .then((response) => console.log(response))
-     .catch((e) => console.error(e));
- };
+  const token = localStorage.getItem(LS_LOGIN_TOKEN);
+
+  axios
+    .get(url, { params: data, headers: { Authorization: token } })
+    .then((response) => console.log(response))
+    .catch((e) => console.error(e));
+};

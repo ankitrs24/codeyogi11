@@ -4,13 +4,15 @@ import "../../index.css";
 export default {
   title: "Progressbar",
   component: Progressbar,
-  argTypes:{
-      theme:{
-          control:{type:'select'},
-      },
+  argTypes: {
+    theme: {
+      control: { type: "select" },
+    },
   },
-  }; 
+};
 export const Main = (args: any) => <Progressbar {...args}></Progressbar>;
 
-Main.args={
-   };
+Main.args = {
+  progress: 10,
+  theme: "primary",
+};
