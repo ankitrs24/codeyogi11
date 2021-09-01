@@ -81,6 +81,7 @@ interface GroupRequest {
   query?: string;
   status: "all-groups" | "favourite" | "archieved";
 }
+
 interface GroupResponse {
   data: Group;
   creator: Creators;
@@ -90,7 +91,7 @@ export interface Group {
   id: number;
   name: string;
   description: string;
-  group_imageurl: string;
+  profile_pic_url: string;
 }
 
 interface Creators {

@@ -5,7 +5,7 @@ export default {
   title: "AvatarStack",
   component: AvatarStack,
   argTypes: {
-    status: {
+    statusArray: {
       control: { type: "select" },
     },
   },
